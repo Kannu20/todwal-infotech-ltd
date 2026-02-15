@@ -276,7 +276,7 @@ const ServicesPage: React.FC = () => {
     : services.filter(s => s.category === activeCategory);
 
   const stats = [
-    { icon: Rocket, value: '6+', label: 'Projects Built' },
+    { icon: Rocket, value: '30+', label: 'Projects Built' },
     { icon: Star, value: 'Early', label: 'Client Collaborations' },
     { icon: TrendingUp, value: 'Focused', label: 'Quality Delivery' },
     { icon: Zap, value: 'Fast', label: 'Response & Support' }
@@ -526,7 +526,7 @@ const ServicesPage: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/contact"
+              href="contact"
               className="group inline-flex items-center justify-center bg-white text-blue-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95"
             >
               Get Free Consultation
