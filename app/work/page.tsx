@@ -238,7 +238,7 @@ useEffect(() => {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
             {[
-              { value: "6+", label: "Projects Built" },
+              { value: "30+", label: "Projects Built" },
               { value: "Early", label: "Client Work" },
               { value: "Focused", label: "Quality Delivery" },
               { value: "Modern", label: "Tech Stack" }
@@ -432,7 +432,7 @@ useEffect(() => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-200">
             <a
-              href="/contact"
+              href="contact"
               className="group inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-medium hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 active:scale-95"
             >
               Get Free Website Audit
