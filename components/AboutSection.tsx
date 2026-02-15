@@ -255,7 +255,7 @@ const AboutTodwal: React.FC = () => {
             </ul>
 
             <motion.a
-              href="#contact"
+              href="contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               className="inline-block mt-8 bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold"
