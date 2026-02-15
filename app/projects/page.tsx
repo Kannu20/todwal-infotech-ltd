@@ -401,14 +401,14 @@ const ProjectsPage: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="/contact" 
+              href="contact" 
               className="group inline-flex items-center justify-center bg-white text-blue-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95"
             >
               Start Your Project
               <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
             </a>
             <a 
-              href="/services" 
+              href="services" 
               className="inline-flex items-center justify-center border-2 border-white text-white bg-white/10 backdrop-blur-sm px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300 hover:scale-105 active:scale-95"
             >
               View All Services
