@@ -236,7 +236,7 @@ const ContactPage: React.FC = () => {
               <div className="text-sm text-gray-600">Free Audit</div>
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-pink-100 hover:scale-105 transition-transform duration-300">
-              <div className="text-3xl font-bold text-pink-600 mb-1">10+</div>
+              <div className="text-3xl font-bold text-pink-600 mb-1">20+</div>
               <div className="text-sm text-gray-600">Happy Clients</div>
             </div>
           </div>
@@ -568,16 +568,12 @@ const ContactPage: React.FC = () => {
                 </h3>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center p-3 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors duration-300">
-                    <span className="text-gray-700 font-medium">Monday - Friday</span>
+                    <span className="text-gray-700 font-medium">Mon - Fri</span>
                     <span className="font-bold text-blue-600">9:00 AM - 7:00 PM</span>
                   </div>
                   <div className="flex justify-between items-center p-3 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors duration-300">
-                    <span className="text-gray-700 font-medium">Saturday</span>
+                    <span className="text-gray-700 font-medium">Sat - Sun</span>
                     <span className="font-bold text-blue-600">10:00 AM - 5:00 PM</span>
-                  </div>
-                  <div className="flex justify-between items-center p-3 bg-gray-50 rounded-xl">
-                    <span className="text-gray-700 font-medium">Sunday</span>
-                    <span className="font-medium text-gray-400">Closed</span>
                   </div>
                 </div>
               </div>
