@@ -132,7 +132,22 @@ const AboutPage: React.FC = () => {
     { name: "Vercel", gradient: "from-gray-800 to-black" },
     { name: "AWS", gradient: "from-orange-400 to-yellow-500" },
     { name: "Figma", gradient: "from-purple-500 to-pink-500" },
-    { name: "REST APIs", gradient: "from-indigo-500 to-purple-500" }
+    { name: "REST APIs", gradient: "from-indigo-500 to-purple-500" },
+
+    { name: "Angular", gradient: "from-red-500 to-red-700" },
+  { name: "MERN Stack", gradient: "from-green-500 to-blue-500" },
+  { name: "MEAN Stack", gradient: "from-red-500 to-green-500" },
+  { name: "Full Stack", gradient: "from-indigo-500 to-blue-600" },
+  { name: "Kotlin", gradient: "from-purple-500 to-indigo-500" },
+  { name: "Redux", gradient: "from-purple-600 to-indigo-600" },
+  { name: "React Native", gradient: "from-cyan-500 to-blue-600" },
+  { name: "Vue.js", gradient: "from-green-400 to-green-600" },
+  { name: "Supabase", gradient: "from-emerald-500 to-green-700" },
+  { name: "Nginx", gradient: "from-green-600 to-lime-600" },
+{ name: "Spring Boot", gradient: "from-green-500 to-emerald-700" },
+  { name: "Apache Kafka", gradient: "from-gray-700 to-black" },
+  { name: "Hibernate", gradient: "from-yellow-600 to-orange-700" }
+
   ];
 
   return (
