@@ -387,7 +387,7 @@ const ContactPage: React.FC = () => {
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         onFocus={() => setFocusedField('phone')}
                         onBlur={() => setFocusedField('')}
-                        placeholder="+91 98765 43210"
+                        placeholder="+91 90010 12065"
                       />
                     </div>
 
