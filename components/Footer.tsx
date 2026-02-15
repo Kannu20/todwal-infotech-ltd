@@ -22,7 +22,7 @@ const Footer = () => {
           </h3>
 
           <a
-            href="#contact"
+            href="contact"
             className="inline-flex items-center gap-2 bg-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition"
           >
             Get Free Website Audit <ArrowRight />
