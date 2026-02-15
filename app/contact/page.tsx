@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Mail, Phone, MessageCircle, MapPin, Clock, Send, CheckCircle, Sparkles, Zap, HeadphonesIcon, Calendar } from 'lucide-react';
+import emailjs from "@emailjs/browser";
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -21,73 +22,110 @@ const ContactPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [focusedField, setFocusedField] = useState<string>('');
 
+
   // Typing animation for headline
-  // const [displayedText, setDisplayedText] = useState<string>('');
-  // const [charIndex, setCharIndex] = useState<number>(0);
-  // const fullText = "Let's Build Your Dream Website Together";
+  const fullText = "Let's Build Your Dream Website Together";
 
-  // useEffect(() => {
-  //   if (charIndex < fullText.length) {
-  //     const timeout = setTimeout(() => {
-  //       setDisplayedText(fullText.substring(0, charIndex + 1));
-  //       setCharIndex(charIndex + 1);
-  //     }, 80);
-  //     return () => clearTimeout(timeout);
-  //   }
-  // }, [charIndex]);
-  // Typing animation for headline
-const fullText = "Let's Build Your Dream Website Together";
+  const [displayedText, setDisplayedText] = useState('');
+  const [charIndex, setCharIndex] = useState(0);
 
-const [displayedText, setDisplayedText] = useState('');
-const [charIndex, setCharIndex] = useState(0);
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
 
-useEffect(() => {
-  let timeout: NodeJS.Timeout;
+    if (charIndex < fullText.length) {
+      // Typing effect
+      timeout = setTimeout(() => {
+        setDisplayedText(fullText.slice(0, charIndex + 1));
+        setCharIndex((prev) => prev + 1);
+      }, 80);
+    } else {
+      // Pause after full text
+      timeout = setTimeout(() => {
+        setDisplayedText('');
+        setCharIndex(0);
+      }, 2000); // pause duration
+    }
 
-  if (charIndex < fullText.length) {
-    // Typing effect
-    timeout = setTimeout(() => {
-      setDisplayedText(fullText.slice(0, charIndex + 1));
-      setCharIndex((prev) => prev + 1);
-    }, 80);
-  } else {
-    // Pause after full text
-    timeout = setTimeout(() => {
-      setDisplayedText('');
-      setCharIndex(0);
-    }, 2000); // pause duration
+    return () => clearTimeout(timeout);
+  }, [charIndex, fullText]);
+
+
+  // const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   e.preventDefault();
+  //   setIsLoading(true);
+
+  //   // Simulate API call
+  //   setTimeout(() => {
+  //     console.log('Form submitted:', formData);
+  //     setIsLoading(false);
+  //     setIsSubmitted(true);
+
+  //     // Reset form after 5 seconds
+  //     setTimeout(() => {
+  //       setFormData({
+  //         name: '',
+  //         email: '',
+  //         phone: '',
+  //         businessType: '',
+  //         projectType: '',
+  //         budget: '',
+  //         message: '',
+  //         timeline: ''
+  //       });
+  //       setIsSubmitted(false);
+  //     }, 5000);
+  //   }, 2000);
+  // };
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  e.preventDefault();
+
+  if (!formData.name || !formData.email || !formData.phone || !formData.message) {
+    alert("Please fill all required fields");
+    return;
   }
 
-  return () => clearTimeout(timeout);
-}, [charIndex, fullText]);
+  setIsLoading(true);
 
+  const templateParams = {
+    name: formData.name,
+    email: formData.email,
+    phone: formData.phone,
+    businessType: formData.businessType,
+    projectType: formData.projectType,
+    budget: formData.budget,
+    timeline: formData.timeline,
+    message: formData.message,
+  };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
+  emailjs
+    .send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE!,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE!,
+      templateParams,
+      process.env.NEXT_PUBLIC_EMAILJS_KEY!
+    )
+    .then(() => {
       setIsLoading(false);
       setIsSubmitted(true);
-      
-      // Reset form after 5 seconds
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          businessType: '',
-          projectType: '',
-          budget: '',
-          message: '',
-          timeline: ''
-        });
-        setIsSubmitted(false);
-      }, 5000);
-    }, 2000);
-  };
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        businessType: "",
+        projectType: "",
+        budget: "",
+        message: "",
+        timeline: "",
+      });
+    })
+    .catch((error) => {
+      console.error("Email error:", error);
+      setIsLoading(false);
+      alert("Something went wrong. Try again.");
+    });
+};
+
 
   interface ContactInfo {
     icon: React.ComponentType<{ className?: string; size?: number }>;
@@ -110,8 +148,8 @@ useEffect(() => {
     {
       icon: Phone,
       title: "Phone",
-      value: "+91 96028 70828",
-      link: "tel:+919602870828",
+      value: "+91 90010 12065",
+      link: "tel:+919001012065",
       description: "Mon-Sat, 9AM-7PM IST",
       gradient: "from-purple-500 to-pink-500"
     },
@@ -119,7 +157,7 @@ useEffect(() => {
       icon: MessageCircle,
       title: "WhatsApp",
       value: "Chat Now",
-      link: "https://wa.me/919602870828",
+      link: "https://wa.me/919001012065",
       description: "Instant responses available",
       gradient: "from-green-500 to-emerald-500"
     },
@@ -159,7 +197,7 @@ useEffect(() => {
   return (
     <div className="min-h-screen bg-white overflow-hidden">
       <Header />
-      
+
       {/* Hero Section with Animated Background */}
       <section className="relative pt-32 pb-16 px-4 sm:px-6 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 overflow-hidden">
         {/* Animated Background Blobs */}
@@ -183,7 +221,7 @@ useEffect(() => {
           </h1>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed animate-fade-in-up animation-delay-200">
-            Get a free website audit and consultation. We'll analyze your needs and show you exactly 
+            Get a free website audit and consultation. We'll analyze your needs and show you exactly
             how a modern website can transform your business and drive real results.
           </p>
 
@@ -222,7 +260,7 @@ useEffect(() => {
                 >
                   {/* Glow effect on hover */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${info.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                  
+
                   <div className="relative z-10">
                     <div className={`w-14 h-14 bg-gradient-to-br ${info.gradient} rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
                       <IconComponent className="text-white" size={28} />
@@ -257,7 +295,7 @@ useEffect(() => {
             <div className="relative animate-fade-in-up">
               {/* Glow behind form */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl opacity-50" />
-              
+
               <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
@@ -272,7 +310,7 @@ useEffect(() => {
                 </div>
 
                 <p className="text-gray-600 mb-8">
-                  Fill out the form below and we'll get back to you within 24 hours with a detailed 
+                  Fill out the form below and we'll get back to you within 24 hours with a detailed
                   analysis of how we can help grow your business.
                 </p>
 
@@ -302,13 +340,12 @@ useEffect(() => {
                         <input
                           type="text"
                           required
-                          className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${
-                            focusedField === 'name' 
-                              ? 'border-blue-500 ring-4 ring-blue-100' 
+                          className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${focusedField === 'name'
+                              ? 'border-blue-500 ring-4 ring-blue-100'
                               : 'border-gray-200 hover:border-gray-300'
-                          }`}
+                            }`}
                           value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           onFocus={() => setFocusedField('name')}
                           onBlur={() => setFocusedField('')}
                           placeholder="John Doe"
@@ -322,13 +359,12 @@ useEffect(() => {
                         <input
                           type="email"
                           required
-                          className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${
-                            focusedField === 'email' 
-                              ? 'border-blue-500 ring-4 ring-blue-100' 
+                          className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${focusedField === 'email'
+                              ? 'border-blue-500 ring-4 ring-blue-100'
                               : 'border-gray-200 hover:border-gray-300'
-                          }`}
+                            }`}
                           value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           onFocus={() => setFocusedField('email')}
                           onBlur={() => setFocusedField('')}
                           placeholder="john@example.com"
@@ -343,13 +379,12 @@ useEffect(() => {
                       <input
                         type="tel"
                         required
-                        className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${
-                          focusedField === 'phone' 
-                            ? 'border-blue-500 ring-4 ring-blue-100' 
+                        className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${focusedField === 'phone'
+                            ? 'border-blue-500 ring-4 ring-blue-100'
                             : 'border-gray-200 hover:border-gray-300'
-                        }`}
+                          }`}
                         value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         onFocus={() => setFocusedField('phone')}
                         onBlur={() => setFocusedField('')}
                         placeholder="+91 98765 43210"
@@ -361,13 +396,12 @@ useEffect(() => {
                         Type of Business
                       </label>
                       <select
-                        className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${
-                          focusedField === 'businessType' 
-                            ? 'border-blue-500 ring-4 ring-blue-100' 
+                        className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${focusedField === 'businessType'
+                            ? 'border-blue-500 ring-4 ring-blue-100'
                             : 'border-gray-200 hover:border-gray-300'
-                        }`}
+                          }`}
                         value={formData.businessType}
-                        onChange={(e) => setFormData({...formData, businessType: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
                         onFocus={() => setFocusedField('businessType')}
                         onBlur={() => setFocusedField('')}
                       >
@@ -387,13 +421,12 @@ useEffect(() => {
                         What do you need?
                       </label>
                       <select
-                        className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${
-                          focusedField === 'projectType' 
-                            ? 'border-blue-500 ring-4 ring-blue-100' 
+                        className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${focusedField === 'projectType'
+                            ? 'border-blue-500 ring-4 ring-blue-100'
                             : 'border-gray-200 hover:border-gray-300'
-                        }`}
+                          }`}
                         value={formData.projectType}
-                        onChange={(e) => setFormData({...formData, projectType: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                         onFocus={() => setFocusedField('projectType')}
                         onBlur={() => setFocusedField('')}
                       >
@@ -412,13 +445,12 @@ useEffect(() => {
                           Budget Range
                         </label>
                         <select
-                          className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${
-                            focusedField === 'budget' 
-                              ? 'border-blue-500 ring-4 ring-blue-100' 
+                          className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${focusedField === 'budget'
+                              ? 'border-blue-500 ring-4 ring-blue-100'
                               : 'border-gray-200 hover:border-gray-300'
-                          }`}
+                            }`}
                           value={formData.budget}
-                          onChange={(e) => setFormData({...formData, budget: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                           onFocus={() => setFocusedField('budget')}
                           onBlur={() => setFocusedField('')}
                         >
@@ -435,13 +467,12 @@ useEffect(() => {
                           Timeline
                         </label>
                         <select
-                          className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${
-                            focusedField === 'timeline' 
-                              ? 'border-blue-500 ring-4 ring-blue-100' 
+                          className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 ${focusedField === 'timeline'
+                              ? 'border-blue-500 ring-4 ring-blue-100'
                               : 'border-gray-200 hover:border-gray-300'
-                          }`}
+                            }`}
                           value={formData.timeline}
-                          onChange={(e) => setFormData({...formData, timeline: e.target.value})}
+                          onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
                           onFocus={() => setFocusedField('timeline')}
                           onBlur={() => setFocusedField('')}
                         >
@@ -460,20 +491,19 @@ useEffect(() => {
                       <textarea
                         rows={5}
                         required
-                        className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 resize-none ${
-                          focusedField === 'message' 
-                            ? 'border-blue-500 ring-4 ring-blue-100' 
+                        className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none transition-all duration-300 text-gray-700 resize-none ${focusedField === 'message'
+                            ? 'border-blue-500 ring-4 ring-blue-100'
                             : 'border-gray-200 hover:border-gray-300'
-                        }`}
+                          }`}
                         value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         onFocus={() => setFocusedField('message')}
                         onBlur={() => setFocusedField('')}
                         placeholder="What are your goals? What problems are you trying to solve? Any specific features you need?"
                       />
                     </div>
 
-                    <button 
+                    <button
                       onClick={handleSubmit}
                       disabled={isLoading}
                       className="group w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 flex items-center justify-center hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -505,7 +535,7 @@ useEffect(() => {
               {/* WhatsApp CTA with Pulse Animation */}
               <div className="relative bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-3xl p-8 overflow-hidden animate-fade-in-up animation-delay-100 group hover:shadow-2xl transition-all duration-500">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-green-300 rounded-full filter blur-3xl opacity-20 animate-pulse-slow" />
-                
+
                 <div className="relative z-10">
                   <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                     <MessageCircle className="text-white" size={32} />
@@ -516,9 +546,9 @@ useEffect(() => {
                   <p className="text-gray-700 mb-6 leading-relaxed">
                     Get instant answers to your questions on WhatsApp. Available Mon-Sat, 9AM-7PM IST.
                   </p>
-                  <a 
-                    href="https://wa.me/919602870828" 
-                    target="_blank" 
+                  <a
+                    href="https://wa.me/919001012065"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="group inline-flex items-center bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg hover:shadow-green-500/50 transition-all duration-300 hover:scale-105 active:scale-95"
                   >

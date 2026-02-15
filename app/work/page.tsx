@@ -69,7 +69,7 @@ useEffect(() => {
       image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=800&fit=crop",
       features: ["Online Booking", "Patient Portal", "Mobile Responsive", "SEO Optimized"],
       link: "#",
-      demoLink: "https://demo-clinic.vercel.app"
+      demoLink: "https://telehealth-pa.vercel.app/"
     },
     {
       id: 2,
@@ -89,7 +89,7 @@ useEffect(() => {
       image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=800&fit=crop",
       features: ["Membership Plans", "Class Schedules", "Payment Gateway", "Trainer Profiles"],
       link: "#",
-      demoLink: "https://demo-gym.vercel.app"
+      demoLink: "https://thasneem9.github.io/elovon/"
     },
     {
       id: 3,
@@ -109,7 +109,7 @@ useEffect(() => {
       image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&h=800&fit=crop",
       features: ["Product Catalog", "Secure Payments", "Order Tracking", "Customer Reviews"],
       link: "#",
-      demoLink: "https://demo-salon.vercel.app"
+      demoLink: "https://vigeandcosalon.netlify.app/"
     },
     {
       id: 4,
@@ -129,7 +129,7 @@ useEffect(() => {
       image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&h=800&fit=crop",
       features: ["Course Management", "Student Portal", "Blog System", "Analytics Dashboard"],
       link: "#",
-      demoLink: "https://demo-coaching.vercel.app"
+      demoLink: "https://demo-coaching.vercel.app/"
     },
     {
       id: 5,
@@ -439,7 +439,7 @@ useEffect(() => {
               <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
             </a>
             <a
-              href="https://wa.me/9602870828"
+              href="https://wa.me/9001012065"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center border-2 border-blue-600 text-blue-600 bg-white px-8 py-4 rounded-xl font-medium hover:bg-blue-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95"

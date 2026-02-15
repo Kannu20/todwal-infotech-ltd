@@ -38,7 +38,7 @@ const Footer = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4">Todwal Infotech</h3>
             <p className="text-gray-400 leading-relaxed mb-6">
-              We help startups and local businesses build high-performance 
+              We help startups and local businesses build high-performance
               websites that convert visitors into customers.
             </p>
 
@@ -52,11 +52,42 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-3 text-gray-400">
-              <li><a href="\" className="hover:text-white">Home</a></li>
+              {/* <li><a href="\" className="hover:text-white">Home</a></li>
               <li><a href="services" className="hover:text-white">Services</a></li>
               <li><a href="work" className="hover:text-white">Case Studies</a></li>
               <li><a href="about" className="hover:text-white">About Us</a></li>
-              <li><a href="contact" className="hover:text-white">Contact</a></li>
+              <li><a href="contact" className="hover:text-white">Contact</a></li> */}
+
+              <li>
+                <a href="/" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  Home
+                </a>
+              </li>
+
+              <li>
+                <a href="/services" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  Services
+                </a>
+              </li>
+
+              <li>
+                <a href="/work" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  Case Studies
+                </a>
+              </li>
+
+              <li>
+                <a href="/about" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  About Us
+                </a>
+              </li>
+
+              <li>
+                <a href="/contact" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  Contact
+                </a>
+              </li>
+
             </ul>
           </div>
 
@@ -80,7 +111,7 @@ const Footer = () => {
                 <Mail size={16} /> todwalinfotech@gmail.com
               </li>
               <li className="flex items-center gap-2">
-                <Phone size={16} /> +91 96028 70828
+                <Phone size={16} /> +91 90010 12065
               </li>
               <li className="flex items-center gap-2">
                 <MapPin size={16} /> Jaipur, Rajasthan, India

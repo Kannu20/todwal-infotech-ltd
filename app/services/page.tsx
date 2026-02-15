@@ -3,9 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { 
-  Globe, Smartphone, Megaphone, Code2, 
-  Zap, ShoppingCart, Search, Palette, 
+import { useRouter } from "next/navigation";
+
+import {
+  Globe, Smartphone, Megaphone, Code2,
+  Zap, ShoppingCart, Search, Palette,
   BarChart3, Mail, Share2, Video,
   CheckCircle, ArrowRight, Sparkles, TrendingUp,
   Rocket, Star, Eye, MessageCircle
@@ -14,32 +16,33 @@ import {
 const ServicesPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [hoveredService, setHoveredService] = useState<number | null>(null);
-  
+
   // Typing animation
-const [displayedText, setDisplayedText] = useState('');
-const [charIndex, setCharIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [charIndex, setCharIndex] = useState(0);
+  const router = useRouter();
 
-const fullText = "Transform Your Digital Presence Together";
+  const fullText = "Transform Your Digital Presence Together";
 
-useEffect(() => {
-  let timeout: NodeJS.Timeout;
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
 
-  if (charIndex < fullText.length) {
-    // typing
-    timeout = setTimeout(() => {
-      setDisplayedText(fullText.slice(0, charIndex + 1));
-      setCharIndex((prev) => prev + 1);
-    }, 80);
-  } else {
-    // pause, then restart
-    timeout = setTimeout(() => {
-      setDisplayedText('');
-      setCharIndex(0);
-    }, 2000); // pause after full text
-  }
+    if (charIndex < fullText.length) {
+      // typing
+      timeout = setTimeout(() => {
+        setDisplayedText(fullText.slice(0, charIndex + 1));
+        setCharIndex((prev) => prev + 1);
+      }, 80);
+    } else {
+      // pause, then restart
+      timeout = setTimeout(() => {
+        setDisplayedText('');
+        setCharIndex(0);
+      }, 2000); // pause after full text
+    }
 
-  return () => clearTimeout(timeout);
-}, [charIndex, fullText]);
+    return () => clearTimeout(timeout);
+  }, [charIndex, fullText]);
 
 
   interface Service {
@@ -69,7 +72,7 @@ useEffect(() => {
         'Content management system',
         'Analytics integration'
       ],
-      price: 'From ₹25,000',
+      price: 'Custom Quote',
       gradient: 'from-blue-500 to-cyan-500',
       popular: true
     },
@@ -86,7 +89,7 @@ useEffect(() => {
         'Customer accounts',
         'Inventory management'
       ],
-      price: 'From ₹50,000',
+      price: 'Custom Quote',
       gradient: 'from-purple-500 to-pink-500'
     },
     {
@@ -102,7 +105,7 @@ useEffect(() => {
         'SEO improvements',
         'Security enhancements'
       ],
-      price: 'From ₹20,000',
+      price: 'Custom Quote',
       gradient: 'from-orange-500 to-red-500'
     },
 
@@ -120,7 +123,7 @@ useEffect(() => {
         'Offline functionality',
         'App store deployment'
       ],
-      price: 'From ₹80,000',
+      price: 'Custom Quote',
       gradient: 'from-green-500 to-emerald-500',
       popular: true
     },
@@ -137,7 +140,7 @@ useEffect(() => {
         'Push notifications',
         'Cross-platform compatibility'
       ],
-      price: 'From ₹40,000',
+      price: 'Custom Quote',
       gradient: 'from-blue-600 to-purple-600'
     },
 
@@ -155,7 +158,7 @@ useEffect(() => {
         'Content optimization',
         'Monthly reporting'
       ],
-      price: 'From ₹15,000/mo',
+      price: 'Custom Quote',
       gradient: 'from-yellow-500 to-orange-500'
     },
     {
@@ -171,7 +174,7 @@ useEffect(() => {
         'Analytics & insights',
         'Brand strategy'
       ],
-      price: 'From ₹12,000/mo',
+      price: 'Custom Quote',
       gradient: 'from-pink-500 to-rose-500'
     },
     {
@@ -187,7 +190,7 @@ useEffect(() => {
         'A/B testing',
         'Performance tracking'
       ],
-      price: 'From ₹8,000/mo',
+      price: 'Custom Quote',
       gradient: 'from-indigo-500 to-purple-500'
     },
 
@@ -221,7 +224,7 @@ useEffect(() => {
         'Multi-source integration',
         'Mobile access'
       ],
-      price: 'From ₹35,000',
+      price: 'Custom Quote',
       gradient: 'from-violet-500 to-purple-500'
     },
 
@@ -239,7 +242,7 @@ useEffect(() => {
         'Social media templates',
         'Business stationery'
       ],
-      price: 'From ₹18,000',
+      price: 'Custom Quote',
       gradient: 'from-rose-500 to-pink-500'
     },
     {
@@ -255,7 +258,7 @@ useEffect(() => {
         'Product photography',
         'Copywriting'
       ],
-      price: 'From ₹10,000',
+      price: 'Custom Quote',
       gradient: 'from-amber-500 to-orange-500'
     }
   ];
@@ -268,16 +271,16 @@ useEffect(() => {
     { id: 'software', name: 'Software Services', icon: Code2 }
   ];
 
-  const filteredServices = activeCategory === 'all' 
-    ? services 
+  const filteredServices = activeCategory === 'all'
+    ? services
     : services.filter(s => s.category === activeCategory);
 
   const stats = [
-  { icon: Rocket, value: '6+', label: 'Projects Built' },
-  { icon: Star, value: 'Early', label: 'Client Collaborations' },
-  { icon: TrendingUp, value: 'Focused', label: 'Quality Delivery' },
-  { icon: Zap, value: 'Fast', label: 'Response & Support' }
-];
+    { icon: Rocket, value: '6+', label: 'Projects Built' },
+    { icon: Star, value: 'Early', label: 'Client Collaborations' },
+    { icon: TrendingUp, value: 'Focused', label: 'Quality Delivery' },
+    { icon: Zap, value: 'Fast', label: 'Response & Support' }
+  ];
 
 
   return (
@@ -316,7 +319,7 @@ useEffect(() => {
               {stats.map((stat, index) => {
                 const IconComponent = stat.icon;
                 return (
-                  <div 
+                  <div
                     key={index}
                     className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-blue-100 hover:scale-105 transition-all duration-300 group"
                   >
@@ -341,11 +344,10 @@ useEffect(() => {
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold whitespace-nowrap transition-all duration-300 ${
-                    activeCategory === cat.id
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-105'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold whitespace-nowrap transition-all duration-300 ${activeCategory === cat.id
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-105'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
                 >
                   <IconComponent size={20} />
                   {cat.name}
@@ -372,7 +374,7 @@ useEffect(() => {
                 >
                   {/* Glow Effect */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                  
+
                   {/* Animated Border Glow */}
                   <div className={`absolute -inset-0.5 bg-gradient-to-r ${service.gradient} rounded-3xl opacity-0 group-hover:opacity-75 blur transition-opacity duration-500`} />
 
@@ -393,7 +395,7 @@ useEffect(() => {
                     <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
                       {service.title}
                     </h3>
-                    
+
                     <p className="text-gray-600 mb-6 leading-relaxed">
                       {service.description}
                     </p>
@@ -416,10 +418,18 @@ useEffect(() => {
                           {service.price}
                         </div>
                       </div>
-                      <button className="group/btn bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
+                      {/* <button className="group/btn bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2">
+                        Get Started
+                        <ArrowRight className="transition-transform duration-300 group-hover/btn:translate-x-1" size={18} />
+                      </button> */}
+                      <button
+                        onClick={() => router.push("/contact")}
+                        className="group/btn bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2"
+                      >
                         Get Started
                         <ArrowRight className="transition-transform duration-300 group-hover/btn:translate-x-1" size={18} />
                       </button>
+
                     </div>
                   </div>
 
@@ -472,7 +482,7 @@ useEffect(() => {
             ].map((item, index) => {
               const IconComponent = item.icon;
               return (
-                <div 
+                <div
                   key={index}
                   className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 animate-fade-in-up"
                   style={{ animationDelay: `${index * 100}ms` }}
@@ -515,15 +525,15 @@ useEffect(() => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="/contact" 
+            <a
+              href="/contact"
               className="group inline-flex items-center justify-center bg-white text-blue-600 px-10 py-4 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95"
             >
               Get Free Consultation
               <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
             </a>
-            <a 
-              href="https://wa.me/919602870828" 
+            <a
+              href="https://wa.me/919001012065"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center border-2 border-white text-white bg-white/10 backdrop-blur-sm px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300 hover:scale-105 active:scale-95"

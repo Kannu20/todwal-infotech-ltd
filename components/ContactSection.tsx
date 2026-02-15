@@ -11,12 +11,42 @@ const ContactSection = () => {
     phone: '',
     message: ''
   });
+  const [error, setError] = useState('');
 
+  // const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   e.preventDefault();
+  //   alert('Thanks! I will contact you within 24 hours.');
+  //   setFormData({ name: '', email: '', phone: '', message: '' });
+  // };
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    alert('Thanks! I will contact you within 24 hours.');
+
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.phone.trim() ||
+      !formData.message.trim()
+    ) {
+      setError('Please fill all details');
+      return;
+    }
+
+    setError('');
+
+    const message = `New Website Audit Request
+
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Project Details: ${formData.message}`;
+
+    const encodedMessage = encodeURIComponent(message);
+
+    window.open(`https://wa.me/919001012065?text=${encodedMessage}`, "_blank");
+
     setFormData({ name: '', email: '', phone: '', message: '' });
   };
+
 
   return (
     <section id="contact" className="py-28 px-4 bg-gray-50">
@@ -145,8 +175,8 @@ const ContactSection = () => {
                 <a href="mailto:todwalinfotech@gmail.com" className="flex items-center gap-3 hover:text-blue-600">
                   <Mail className="text-blue-600" /> todwalinfotech@gmail.com
                 </a>
-                <a href="tel:+919602870828" className="flex items-center gap-3 hover:text-blue-600">
-                  <Phone className="text-blue-600" /> +91 96028 70828
+                <a href="tel:+919001012065" className="flex items-center gap-3 hover:text-blue-600">
+                  <Phone className="text-blue-600" /> +91 90010 12065
                 </a>
               </div>
             </div>
@@ -164,7 +194,7 @@ const ContactSection = () => {
               </p>
 
               <a
-                href="https://wa.me/919602870828"
+                href="https://wa.me/919001012065"
                 target="_blank"
                 className="inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-600"
               >

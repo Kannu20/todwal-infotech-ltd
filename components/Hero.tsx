@@ -5,8 +5,6 @@ import { ArrowRight, MessageCircle, Star, TrendingUp, Zap } from 'lucide-react';
 
 const Hero: React.FC = () => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
-    //   const [currentWordIndex, setCurrentWordIndex] = useState<number>(0);
-    //   const [isTyping, setIsTyping] = useState<boolean>(true);
     const [typedText, setTypedText] = useState('');
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
     const [showCursor, setShowCursor] = useState(true);
@@ -20,70 +18,34 @@ const Hero: React.FC = () => {
         setIsVisible(true);
     }, []);
 
-    // Typing animation effect
-    //   useEffect(() => {
-    //     const typingInterval = setInterval(() => {
-    //       setCurrentWordIndex((prev) => (prev + 1) % rotatingWords.length);
-    //       setIsTyping(false);
-
-    //       setTimeout(() => setIsTyping(true), 100);
-    //     }, 3000);
-
-    //     return () => clearInterval(typingInterval);
-    //   }, []);
-
-    // useEffect(() => {
-    //     const word = rotatingWords[currentWordIndex];
-    //     let charIndex = 0;
-
-    //     setTypedText('');
-
-    //     const typingInterval = setInterval(() => {
-    //         if (charIndex < word.length) {
-    //             setTypedText((prev) => prev + word.charAt(charIndex));
-    //             charIndex++;
-    //         } else {
-    //             clearInterval(typingInterval);
-
-    //             // Pause after full word, then move to next
-    //             setTimeout(() => {
-    //                 setCurrentWordIndex(
-    //                     (prev) => (prev + 1) % rotatingWords.length
-    //                 );
-    //             }, 2000);
-    //         }
-    //     }, 130); // ⬅️ typing speed (increase for slower)
-
-    //     return () => clearInterval(typingInterval);
-    // }, [currentWordIndex]);
 
     useEffect(() => {
-  const word = rotatingWords[currentWordIndex];
-  let timeoutId: NodeJS.Timeout;
+        const word = rotatingWords[currentWordIndex];
+        let timeoutId: NodeJS.Timeout;
 
-  setTypedText('');
+        setTypedText('');
 
-  const typeNextChar = (index: number) => {
-    if (index < word.length) {
-      setTypedText((prev) => prev + word[index]);
+        const typeNextChar = (index: number) => {
+            if (index < word.length) {
+                setTypedText((prev) => prev + word[index]);
 
-      timeoutId = setTimeout(() => {
-        typeNextChar(index + 1);
-      }, 130); // typing speed
-    } else {
-      // pause after full word
-      timeoutId = setTimeout(() => {
-        setCurrentWordIndex(
-          (prev) => (prev + 1) % rotatingWords.length
-        );
-      }, 2000);
-    }
-  };
+                timeoutId = setTimeout(() => {
+                    typeNextChar(index + 1);
+                }, 130); // typing speed
+            } else {
+                // pause after full word
+                timeoutId = setTimeout(() => {
+                    setCurrentWordIndex(
+                        (prev) => (prev + 1) % rotatingWords.length
+                    );
+                }, 2000);
+            }
+        };
 
-  typeNextChar(0);
+        typeNextChar(0);
 
-  return () => clearTimeout(timeoutId);
-}, [currentWordIndex]);
+        return () => clearTimeout(timeoutId);
+    }, [currentWordIndex]);
 
 
     useEffect(() => {
@@ -104,18 +66,19 @@ const Hero: React.FC = () => {
         delay: string;
     }
 
-    
+
     return (
         <section
             id="home"
-            className="relative pt-32 pb-20 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white overflow-hidden"
+            className="relative pt-32 pb-20 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white overflow-x-hidden"
         >
             {/* Animated Background Elements */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-20 left-10 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" />
                 <div className="absolute top-40 right-10 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000" />
                 <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000" />
-            </div>
+            </div> */}
+            
 
             <div className="max-w-6xl mx-auto relative z-10">
                 <div className="max-w-3xl">
