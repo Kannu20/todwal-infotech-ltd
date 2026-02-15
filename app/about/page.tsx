@@ -217,12 +217,12 @@ const AboutPage: React.FC = () => {
       </div>
 
       <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all duration-300">
-        <div className="text-5xl font-bold mb-2 animate-count-up">Modern</div>
+        <div className="text-5xl font-bold mb-2 animate-count-up">New</div>
         <div className="text-blue-100 text-sm">Tech Stack</div>
       </div>
 
       <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all duration-300">
-        <div className="text-5xl font-bold mb-2 animate-count-up">Focused</div>
+        <div className="text-5xl font-bold mb-2 animate-count-up">Aim</div>
         <div className="text-blue-100 text-sm">Quality Delivery</div>
       </div>
 
