@@ -183,14 +183,14 @@ const AboutPage: React.FC = () => {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
-                  href="/contact" 
+                  href="contact" 
                   className="group inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 active:scale-95"
                 >
                   Let's Work Together
                   <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
                 </a>
                 <a 
-                  href="/work" 
+                  href="work" 
                   className="inline-flex items-center justify-center border-2 border-blue-600 text-blue-600 bg-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 hover:scale-105 active:scale-95"
                 >
                   View Our Work
@@ -207,7 +207,7 @@ const AboutPage: React.FC = () => {
     <div className="grid grid-cols-2 gap-6">
       
       <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all duration-300">
-        <div className="text-5xl font-bold mb-2 animate-count-up">6+</div>
+        <div className="text-5xl font-bold mb-2 animate-count-up">30+</div>
         <div className="text-blue-100 text-sm">Projects Built</div>
       </div>
 
