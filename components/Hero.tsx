@@ -135,7 +135,7 @@ const Hero: React.FC = () => {
                             <ArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" size={20} />
                         </a>
                         <a
-                            href="https://wa.me/9602870828"
+                            href="https://wa.me/9001012065"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group inline-flex items-center justify-center border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-medium hover:bg-blue-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95"
