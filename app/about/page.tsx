@@ -146,7 +146,8 @@ const AboutPage: React.FC = () => {
   { name: "Nginx", gradient: "from-green-600 to-lime-600" },
 { name: "Spring Boot", gradient: "from-green-500 to-emerald-700" },
   { name: "Apache Kafka", gradient: "from-gray-700 to-black" },
-  { name: "Hibernate", gradient: "from-yellow-600 to-orange-700" }
+  { name: "Hibernate", gradient: "from-yellow-600 to-orange-700" },
+    { name: "Nest.js", gradient: "from-blue-500 to-blue-700" },
 
   ];
 
